@@ -4,5 +4,23 @@
     "express": "^4.18.1",
     "sequelize": "^6.21.3",
     "sqlite3": "^5.0.9"
-  }
+  },
+  "name": "onibus",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J-Lucas94/NodejsBus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/J-Lucas94/NodejsBus/issues"
+  },
+  "homepage": "https://github.com/J-Lucas94/NodejsBus#readme",
+  "description": ""
 }
