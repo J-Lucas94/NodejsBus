@@ -6,6 +6,11 @@ const Movimentos = db.define('Movimentos', {
     id_usuario: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo não pode ser vazio !"
+            }            
+        },
         references: {
             model: 'Usuarios',
             key: 'id'
@@ -16,7 +21,12 @@ const Movimentos = db.define('Movimentos', {
         allowNull: false,
         references: {
             model: 'Veiculos',
-            key: 'id'
+            key: 'placa'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
     id_motorista: {
@@ -25,6 +35,11 @@ const Movimentos = db.define('Movimentos', {
         references: {
             model: 'Motoristas',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
     id_cobrador: {
@@ -33,15 +48,30 @@ const Movimentos = db.define('Movimentos', {
         references: {
             model: 'Cobradores',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
     data_hora_embarque: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isDate: {
+                msg: "Preencha o campo Corretamente !"
+             }           
+        }
     },
-    data_hora_dembarque: {
+    data_hora_desembarque: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isDate: {
+                msg: "Preencha o campo Corretamente !"
+             }           
+        }
     },
     id_ponto_de_embarque: {
         type: DataTypes.STRING,
@@ -49,14 +79,24 @@ const Movimentos = db.define('Movimentos', {
         references: {
             model: 'Pontos',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
-    id_ponto_de_dembarque: {
+    id_ponto_de_desembarque: {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
             model: 'Pontos',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
     id_trecho: {
@@ -65,10 +105,15 @@ const Movimentos = db.define('Movimentos', {
         references: {
             model: 'Trechos',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     }
 })
 
-//db.sync({force:true})
+//db.sync({alter:true})
 
 module.exports = Movimentos

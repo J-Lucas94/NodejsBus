@@ -9,6 +9,11 @@ const Agenda = db.define('Agenda', {
         references:{
             model: 'Municipios',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
     id_municipio_destino: {
@@ -17,14 +22,24 @@ const Agenda = db.define('Agenda', {
         references: {
             model: 'Municipios',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
-    id_veiculo: {
+    id_placa: {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
             model: 'Veiculos',
-            key: 'id'
+            key: 'placa'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
     id_motorista: {
@@ -33,6 +48,11 @@ const Agenda = db.define('Agenda', {
         references: {
             model: 'Motoristas',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     }
 })

@@ -5,11 +5,21 @@ const { Sequelize, DataTypes} = require('sequelize')
 const Trechos = db.define('Trechos', {
     trecho: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
+        },
     },
     km: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }           
+        },
     }
 })
 

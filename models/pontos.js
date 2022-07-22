@@ -9,23 +9,48 @@ const Pontos = db.define('Pontos', {
         references: {
             model: 'Municipios',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
     endereco: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
+        }
     },
     cep: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }           
+        }
     },
     latitude: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }           
+        }
     },
     longitude: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }           
+        }
     }
 })
 

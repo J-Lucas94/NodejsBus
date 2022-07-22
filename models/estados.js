@@ -5,11 +5,21 @@ const { Sequelize, DataTypes} = require('sequelize')
 const Estados = db.define('Estados', {
     estado: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
+        }
     },
     sigla_estado: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
+        }
     },
     id_pais: {
         type: DataTypes.STRING,
@@ -17,6 +27,11 @@ const Estados = db.define('Estados', {
         references: {
             model: 'Paises',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     }
 })

@@ -9,11 +9,21 @@ const Municipios = db.define('Municipios', {
         references: {
             model: 'Estados',
             key: 'id'
+        },
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
         }
     },
     municipio: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Esse campo Não pode ser vazio !"
+            }            
+        }
     }
 })
 
