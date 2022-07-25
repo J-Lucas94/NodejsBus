@@ -1,6 +1,7 @@
 var db = require('../db/db')
 
 const { Sequelize, DataTypes} = require('sequelize')
+const Municipios = require('./municipios')
 
 const Cobradores = db.define('Cobradores', {
     cpf: {
@@ -99,6 +100,9 @@ const Cobradores = db.define('Cobradores', {
     }
 
 })
+
+
+Cobradores.belongsTo(Municipios, {foreignKey: 'id_municipio', allowNull: false})
 
 // db.sync({force:true})
 

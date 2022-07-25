@@ -1,6 +1,10 @@
 var db = require('../db/db')
 
-const { Sequelize, DataTypes} = require('sequelize')
+const { Sequelize, DataTypes, Association} = require('sequelize')
+const Usuarios = require('./usuarios')
+const Cobrador = require('./cobradores')
+const Municipios = require('./municipios')
+const Estado = require('./estados')
 
 const Movimentos = db.define('Movimentos', {
     id_usuario: {
@@ -113,6 +117,11 @@ const Movimentos = db.define('Movimentos', {
         }
     }
 })
+
+
+
+
+Movimentos.belongsTo(Usuarios, {foreignKey: 'id_usuario', allowNull: false})
 
 //db.sync({alter:true})
 

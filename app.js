@@ -63,9 +63,24 @@ app.put('/usuarios/:id', async (req, res) => {
 
 })
 
+// app.get('/usuarios', async (req, res) => {
+//     try {
+//         const usuario = await Usuarios.findByPk(1, {include: [{model: Municipios}]})
+//         if (usuario) {
+//             return res.json(usuario)
+//         } else {
+//             res.status(400),
+//                 res.send("Usuario não encontrado")
+//         }
+//     } catch (error) {
+//         res.send(error)
+//     }
+
+// })
+
 app.get('/usuarios/:id?', async (req, res) => {
     try {
-        const usuario = await Usuarios.findOne({ where: { id: req.params.id } })
+        const usuario = await Usuarios.findOne({where: {id: req.params.id}})
         if (usuario) {
             return res.json(usuario)
         } else {
@@ -77,6 +92,9 @@ app.get('/usuarios/:id?', async (req, res) => {
     }
 
 })
+
+
+
 
 
 app.delete('/usuarios/:id', async (req, res) => {
@@ -198,6 +216,20 @@ app.get('/estados/:id', async (req, res) => {
     }
 })
 
+// app.get('/estados', async (req, res) => {
+//     try {
+//         const estados = await Estados.findByPk(1, {include: [{model: Paises}]})
+//         if (estados) {
+//             return res.json(estados)
+//         } else {
+//             res.send("Não foi possivel encontrar o estado !")
+//         }
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
+
+
 app.delete('/estados/:id', async (req, res) => {
     try {
         const estados = await Estados.destroy({ where: { id: req.params.id } })
@@ -243,19 +275,19 @@ app.put('/municipios/:id', async (req, res) => {
     }
 })
 
-app.get('/municipios/:id', async (req, res) => {
-    try {
-        const municipios = await Municipios.findOne({ where: { id: req.params.id } })
-        if (municipios) {
-            return res.json(municipios)
-        } else {
-            res.status(400),
-                res.send("Não foi possivel encontrar o municipio")
-        }
-    } catch (error) {
-        res.send(error)
-    }
-})
+// app.get('/municipios', async (req, res) => {
+//     try {
+//         const municipios = await Municipios.findByPk(1, {include: [{model: Estados}]})
+//         if (municipios) {
+//             return res.json(municipios)
+//         } else {
+//             res.status(400),
+//                 res.send("Não foi possivel encontrar o municipio")
+//         }
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
 
 app.delete('/municipios/:id', async (req, res) => {
     try {
@@ -313,6 +345,20 @@ app.get('/motoristas/:id', async (req, res) => {
         res.send(error)
     }
 })
+
+// app.get('/motoristas', async (req, res) => {
+//     try {
+//         const motorista = await Motoristas.findByPk(1, {include: [{model: Municipios}]})
+//         if (motorista) {
+//             return res.json(motorista)
+//         } else {
+//             res.status(400),
+//                 res.send("Não foi possivel encontrar o usuario !")
+//         }
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
 
 app.delete('/motoristas/:id', async (req, res) => {
     try {
@@ -374,6 +420,20 @@ app.get('/cobradores/:id', async (req, res) => {
         res.send(error)
     }
 })
+
+// app.get('/cobradores', async (req, res) => {
+//     try {
+//         var cobradores = await Cobradores.findByPk(2, {include: [{model: Municipios}]})
+//         if (cobradores) {
+//             res.json(cobradores)
+//         } else {
+//             res.status(400),
+//                 res.send("Usuario não encontrado !")
+//         }
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
 
 app.delete('/cobradores/:id', async (req, res) => {
     try {
@@ -487,9 +547,22 @@ app.put('/pontos/:id', async (req, res) => {
     }
 })
 
+// app.get('/pontos', async (req, res) => {
+//     try {
+//         const pontos = await Pontos.findByPk(1, {include: [{model: Municipios}]})
+//         if (pontos) {
+//             return res.json(pontos)
+//         } else {
+//             res.send("Não foi possivel encontro o ponto!")
+//         }
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
+
 app.get('/pontos/:id', async (req, res) => {
     try {
-        const pontos = await Pontos.findOne({ where: { id: req.params.id } })
+        const pontos = await Pontos.findOne({where: {id: req.params.id}})
         if (pontos) {
             return res.json(pontos)
         } else {
@@ -601,9 +674,9 @@ app.put('/movimentos/:id', async (req, res) => {
     }
 })
 
-app.get('/movimentos/:id', async (req, res) => {
+app.get('/movimentos', async (req, res) => {
     try {
-        const movimentos = await Movimentos.findOne({ where: { id: req.params.id } })
+        const movimentos = await Movimentos.findByPk(5, {include: [{model: Usuarios}]})
         if (movimentos) {
             res.json(movimentos)
         } else {
@@ -645,7 +718,7 @@ app.post('/agendas', async (req, res) => {
     }
 })
 
-app.put('/agendas', async (req, res)=>{
+app.put('/agendas/:id', async (req, res)=>{
     try {
         const agendas = await Agenda.update(req.body, {where: {id: req.params.id}})
         if(agendas){
@@ -659,21 +732,21 @@ app.put('/agendas', async (req, res)=>{
     }
 })
 
-app.get('/agendas', async (req, res)=>{
-    try {
-        const agendas = await Agenda.findOne({where: {id: req.params.id}})
-        if(agendas){
-            res.json(agendas)
-        }else{
-            res.status(400),
-            res.send("Não foi possivel encontrar a agenda!")
-        }
-    } catch (error) {
-        res.send(error)
-    }
-})
+// app.get('/agendas', async (req, res)=>{
+//     try {
+//         const agendas = await Agenda.findByPk(2, {include: [{model: Municipios}]})
+//         if(agendas){
+//             res.json(agendas)
+//         }else{
+//             res.status(400),
+//             res.send("Não foi possivel encontrar a agenda!")
+//         }
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
 
-app.delete('agendas', async(req, res)=>{
+app.delete('/agendas/:id', async(req, res)=>{
     try {
         const agendas = await Agenda.destroy({where: {id: req.params.id}})
         if(agendas){
@@ -686,13 +759,6 @@ app.delete('agendas', async(req, res)=>{
         res.send(error)
     }
 })
-
-
-
-
-
-
-
 
 
 app.listen(3000, console.log("Servidor Iniciado com Sucesso na Porta 3000"))

@@ -1,6 +1,8 @@
 var db = require('../db/db')
 
 const { Sequelize, DataTypes} = require('sequelize')
+const Municipios = require('./municipios')
+const Motorista = require('./morotistas')
 
 const Agenda = db.define('Agenda', {
     id_municipio_origem: {
@@ -56,6 +58,10 @@ const Agenda = db.define('Agenda', {
         }
     }
 })
+
+Agenda.belongsTo(Municipios, {foreignKey: 'id_municipio_origem', allowNull: false})
+// Agenda.belongsTo(Municipios, {foreignKey: 'id_municipio_destino', allowNull: false})
+
 
 //db.sync({force:true})
 
